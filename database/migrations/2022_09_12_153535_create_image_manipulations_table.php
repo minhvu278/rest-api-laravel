@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Album;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,9 +17,14 @@ class CreateImageManipulationsTable extends Migration
     {
         Schema::create('image_manipulations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->timestamps();
-            $table->foreignIdFor(User::class, 'user_id');
+            $table->string('name', 255);
+            $table->string('path', 2000)->nullable();
+            $table->string('type', 25)->nullable();
+            $table->text('data')->nullable();
+            $table->string('output_path', 2000)->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->foreignIdFor(User::class, 'user_id')->nullable();
+            $table->foreignIdFor(Album::class, 'album_id')->nullable();
         });
     }
 

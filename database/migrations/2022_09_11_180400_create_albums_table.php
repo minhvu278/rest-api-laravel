@@ -17,14 +17,9 @@ class CreateAlbumsTable extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->string('path', 2000);
-            $table->string('type', 25);
-            $table->string('output_path', 2000);
-            $table->text('data');
+            $table->string('name');
             $table->timestamps();
-            $table->foreignIdFor(User::class, 'user_id');
-            $table->foreignIdFor(Album::class, 'album_id');
+            $table->foreignIdFor(User::class, 'user_id')->nullable();
         });
     }
 
